@@ -47,3 +47,36 @@
 #     elements << current
 #   end
 # end
+
+
+def insert(score, movie_title)
+  #return depth of new node (integer)
+end
+
+def include?(score)
+  #return boolean, true if score is there
+end
+
+def depth_of(score)
+  #return depth of tree where score is (integer)
+end
+
+def max
+  #return highest movie and score: {movie_title, score}
+end
+
+def min
+  #return lowest movie and score: {movie_title, score}
+end
+
+def sort
+  #[{movie_title, score}, {movie_title, score}, {movie_title, score}, etc]
+end
+
+def load(movies_txt)
+  #number of movies added (ignore/don't add score repeats)
+end
+
+def health
+  #we'll get there...
+end
