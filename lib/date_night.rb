@@ -25,44 +25,21 @@
 # end
 
 class BinarySearchTree
-
   def load(file)
-    root = Node.new(first_line_score_and_movie)
+    @root = Node.new(first_line_score_and_movie)
     #iterate through list adding new nodes to root
   end
 
   def insert(score, movie)
-    if @score < score
-      insert_right(score, movie_title)
-    elsif @score > score
-      insert_left(score, movie_title)
+    if @root.nil?
+      @root = Node.new(score, movie)
     else
-      "that score already exists"
-      #clarify with instructors what this should be
-    end
-    return depth_of(score)
-  end
-
-  def insert_left(score, movie_title)
-    if left.nil?
-      @left = Node.new(score, movie_title)
-    else
-      @left.insert(score, movie_title)
+      @root.insert(score, movie)
     end
   end
-
-  def insert_right(score, movie_title)
-    if right.nil?
-      @right = Node.new(score, movie_title)
-    else
-      @right.insert(score, movie_title)
-    end
-  end
-
 end
 
 class Node
-
   attr_reader :score, :movie_title
   attr_accessor :left, :right
 
@@ -73,4 +50,28 @@ class Node
     @right = nil
   end
 
+  def insert(score, movie_title)
+    if @score < score
+      insert_right(score, movie_title)
+    elsif @score > score
+      insert_left(score, movie_title)
+    end
+    return depth_of(score)
+  end
+
+  def insert_left(score, movie_title)
+    if left.nil?
+      @left = Node.new(score, movie_title)
+    else
+      #.insert(score, movie_title)
+    end
+  end
+
+  def insert_right(score, movie_title)
+    if @right.nil?
+      @right = Node.new(score, movie_title)
+    else
+      #.insert(score, movie_title)
+    end
+  end
 end
