@@ -5,46 +5,102 @@ require_relative 'date_night'
 
 class DateNightTest < Minitest::Test
   def binary_search_tree_class_exists
-
+    tree = BinarySearchTree.new
+    assert_instance_of BinarySearchTree, tree
   end
 
   def node_class_exists
-
-  end
-
-  def it_makes_a_new_tree
-
+    node = Node.new(12, 18)
+    assert_instance_of Node, node
   end
 
   def it_inserts_new_movie
+    tree = BinarySearchTree.new
+    a = tree.insert(61, "Bill & Ted's Excellent Adventure")
+    b = tree.insert(16, "Johnny English")
+    c = tree.insert(92, "Sharknado 3")
+    d = tree.insert(50, "Hannibal Buress: Animal Furnace")
 
+    assert_equals 0, a
+    assert_equals 1, b
+    assert_equals 1, c
+    assert_equals 2, d
   end
 
   def it_checks_if_score_exits
+    tree = BinarySearchTree.new
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
 
+    assert tree.include?(16)
+    refute tree.include?(72)
   end
 
   def it_checks_score_depth
+    tree = BinarySearchTree.new
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
 
+    assert tree.depth_of(92)
+    assert tree.depth_of(50)
+    assert_equals nil, tree.depth_of(72)
   end
 
   def it_finds_max_score
+    tree = BinarySearchTree.new
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
 
+    assert_equals ({"Sharknado 3"=>92}), tree.max
   end
 
   def it_finds_min_score
+    tree = BinarySearchTree.new
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
 
+    assert_equals ({"Johnny English"=>16}), tree.min
   end
 
   def it_sorts_scores_ascending
+    tree = BinarySearchTree.new
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
 
+    sorted = [{"Johnny English"=>16}, {"Hannibal Buress: Animal Furnace"=>50}, {"Bill & Ted's Excellent Adventure"=>61}, {"Sharknado 3"=>92}]
+
+    assert_equals sorted, tree.sort
   end
 
   def it_loads_file
+    skip
+    tree = BinarySearchTree.new
 
+    assert_equals number, tree.load(text_file)
   end
 
   def it_reports_health
+    tree = BinarySearchTree.new
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
 
+    assert_equals [[98, 7, 100]], tree.health(0)
+    assert_equals [[58, 6, 85]], tree.health(1)
+    assert_equals [[36, 2, 28], [93, 3, 42]], tree.health(2)
   end
 end
