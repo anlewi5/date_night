@@ -63,7 +63,7 @@ class Node
     if left.nil?
       @left = Node.new(score, movie_title)
     else
-      #.insert(score, movie_title)
+      @left.insert(score, movie_title)
     end
   end
 
@@ -71,7 +71,7 @@ class Node
     if @right.nil?
       @right = Node.new(score, movie_title)
     else
-      #.insert(score, movie_title)
+      @right.insert(score, movie_title)
     end
   end
 end
