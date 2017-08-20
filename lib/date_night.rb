@@ -1,70 +1,44 @@
-# example from online
-# each takes data and a pointer to the next node
-# class Node
-#   attr_accessor :val, :next
-#
-#   def initialize(val, next_node)
-#       @val = val
-#       @next = next_node
-#   end
-# end
-#
-# class LinkedList
-#
-#   def initialize(val)
-#     @head = Node.new(val, nil)
-#   end
-#
-#   def add(val)
-#     current = @head
-#     while current.next != nil
-#       current = current.next
-#     end
-#     current.next = Node.new(val, nil)
-#   end
-#
-#   def delete(val)
-#     current.next = @head
-#     if current.val = val
-#       @head = current.next
-#     else
-#       while (current.next != nil) && (current.next.val != val)
-#         current = current.next
-#       end
-#       unless current.next == nil
-#         current.next = current.next.next
-#       end
-#     end
-#   end
-#
-#   def return_list
-#     elements = []
-#     current = @head
-#     while current.next != nil
-#       elements << current
-#       current = current.next
-#     end
-#     elements << current
-#   end
-# end
-
-
 class BinarySearchTree
 
   def initialize
-
+    @score = 0
+    @movie_title = ''
   end
 
   def insert(score, movie_title)
-    #return depth of new node (integer)
+    if @score > score
+      insert_right(score)
+    elsif @score < score
+      insert_left(score)
+    else
+      "that score already exists"
+      #clarify with instructors what this should be
+    end
+    return depth_of(score)
+  end
+
+  def insert_left(score, movie_title)
+    if left
+      left.insert(score, movie_title)
+    else
+      self.left = Node.new(score, movie_title)
+    end
+  end
+
+  def insert_right(score, movie_title)
+    if right
+      right.insert(score, movie_title)
+    else
+      self.right = Node.new(score, movie_title)
+    end
+  end
+
+  def depth_of(score)
+    #return depth or nil if doesn't exist
   end
 
   def include?(score)
     #return boolean, true if score is there
-  end
-
-  def depth_of(score)
-    #return depth of tree where score is (integer)
   end
 
   def max
@@ -85,25 +59,74 @@ class BinarySearchTree
 
 end
 
-class MovieNode
+class Node
+
+  attr_reader :score, :movie_title, :depth
+  attr_accessor :left, :right
 
   def initialize(score, movie_title)
     @score = score
     @movie_title = movie_title
-    @left = EmptyNode.new
-    @right = EmptyNode.new
+    @left = Node.new(score, movie_title)
+    @right = Node.new(score, movie_title)
+    @depth = 0
   end
 
 end
 
-class EmptyNode
 
-  def to_a
-    []
-  end
 
-  def include?(*)
-    false
-  end
-
-end
+# class Node
+#
+#   def initialize(score, movie_title)
+#     @score = score
+#     @movie_title = movie_title
+#     @left = EmptyNode.new
+#     @right = EmptyNode.new
+#     @depth = 0
+#   end
+#
+#   def include?
+#     case score
+#     when score > base_score
+#       then left.include?(score)
+#     when score < base_score
+#       then right.include?(score)
+#     when score == base_score
+#       then true # the current node is equal to the value
+#     end
+#   end
+#
+#   def insert_left(score)
+#     if left
+#       left.insert(score)
+#     else
+#       self.left = Node.new(score)
+#     end
+#   end
+#
+#   def insert_right(score)
+#     if right
+#       right.insert(score)
+#     else
+#       self.right = Node.new(score)
+#     end
+#   end
+#
+# end
+#
+# class EmptyNode
+#
+#   def to_hash
+#     {}
+#   end
+#
+#   def include?(*)
+#     false
+#   end
+#
+#   def insert(*)
+#     false
+#   end
+#
+# end
