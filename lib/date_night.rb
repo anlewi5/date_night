@@ -20,17 +20,20 @@
 #
 # end
 
+require 'pry'
+
 class BinarySearchTree
 
-  def load(file)
-    @root = Node.new(first_line_score_and_movie)
-    #iterate through list adding new nodes to root
-    #return number of movies added (ignore/don't add score repeats)
-  end
+  # def load(file)
+  #   @root = Node.new(first_line_score_and_movie)
+  #   #iterate through list adding new nodes to root
+  #   #return number of movies added (ignore/don't add score repeats)
+  # end
 
   def insert(score, movie)
     if @root.nil?
       @root = Node.new(score, movie)
+      return 0
     else
       @root.insert(score, movie)
     end
@@ -49,11 +52,11 @@ class BinarySearchTree
   end
 
   def depth_of(score)
-    if @root.score == score
-      return 0
-    elsif @nil_pointer
+    if @root.nil? || (@root.right.nil? && @root.left.nil?)
       return nil
-    elsif
+    elsif @root.score == score
+      return 0
+    else
       @root.depth_of(score)
     end
   end
@@ -64,12 +67,13 @@ class Node
   attr_reader :score, :movie_title
   attr_accessor :left, :right, :depth_counter
 
-  def initialize(score, movie)
+  #depth_counter at -2 for now because adding left and right nodes to the root add two
+  def initialize(score, movie, depth_counter = (-2))
     @score = score
     @movie = movie
     @left = nil
     @right = nil
-    @depth_counter = 1
+    @depth_counter = depth_counter
   end
 
   def insert(score, movie_title)
@@ -78,12 +82,13 @@ class Node
     elsif @score > score
       insert_left(score, movie_title)
     end
-    return depth_of(score)
   end
 
   def insert_left(score, movie_title)
     if left.nil?
-      @left = Node.new(score, movie_title)
+      @left = Node.new(score, movie_title, @depth_counter += 1)
+      @left.depth_counter += 1
+      return @left.depth_counter
     else
       @left.insert(score, movie_title)
     end
@@ -91,7 +96,9 @@ class Node
 
   def insert_right(score, movie_title)
     if @right.nil?
-      @right = Node.new(score, movie_title)
+      @right = Node.new(score, movie_title, @depth_counter += 1)
+      @right.depth_counter += 1
+      return @right.depth_counter
     else
       @right.insert(score, movie_title)
     end
@@ -114,11 +121,9 @@ class Node
       return @depth_counter
     elsif @right.nil? && @left.nil?
       return nil
-    elsif @right.right.nil? || @right.score > score
-      @left.depth_counter += 1
+    elsif @right.nil? || @score >= score
       @left.depth_of(score)
-    elsif @left.left.nil? || @left.score < score
-      @right.depth_counter += 1
+    elsif @left.nil? || @score <= score
       @right.depth_of(score)
     end
   end
