@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/date_night'
+require_relative '../lib/binary_tree'
 
 class TestDateNight < Minitest::Test
 
@@ -18,16 +18,8 @@ class TestDateNight < Minitest::Test
     assert_instance_of BinarySearchTree, tree
   end
 
-  #passes
-  def test_node_class_exists
-    skip
-    node = Node.new(12, "string")
-    assert_instance_of Node, node
-  end
-
 #don't say it; please clarify (test_methodname_whatdoesitdo?)
-  def test_it_inserts_new_movie
-    tree = BinarySearchTree.new
+  def test_insert_adds_new_movie
     #name variables better
     a = tree.insert(61, "Bill & Ted's Excellent Adventure")
     b = tree.insert(16, "Johnny English")
@@ -41,9 +33,8 @@ class TestDateNight < Minitest::Test
   end
 
   #passes
-  def test_it_checks_if_score_exits
+  def test_include_checks_if_score_exits
     skip
-    tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -53,9 +44,8 @@ class TestDateNight < Minitest::Test
     refute tree.include?(72)
   end
 
-  def test_it_checks_score_depth
+  def test_depth_of_checks_score_depth
     skip
-    tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -66,9 +56,8 @@ class TestDateNight < Minitest::Test
     assert_equal nil, tree.depth_of(72)
   end
 
-  def test_it_finds_max_score
+  def test_max_finds_max_score
     skip
-    tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -77,9 +66,8 @@ class TestDateNight < Minitest::Test
     assert_equal ({"Sharknado 3"=>92}), tree.max
   end
 
-  def test_it_finds_min_score
+  def test_min_finds_min_score
     skip
-    tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -88,9 +76,8 @@ class TestDateNight < Minitest::Test
     assert_equal ({"Johnny English"=>16}), tree.min
   end
 
-  def test_it_sorts_scores_ascending
+  def test_sort_sorts_scores_ascending
     skip
-    tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -101,16 +88,14 @@ class TestDateNight < Minitest::Test
     assert_equal sorted, tree.sort
   end
 
-  def test_it_loads_file
+  def test_load_loads_file_into_tree
     skip
-    tree = BinarySearchTree.new
 
     assert_equal number, tree.load(text_file)
   end
 
-  def test_it_reports_health
+  def test_health_reports_tree_health
     skip
-    tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
     tree.insert(36, "Bill & Ted's Bogus Journey")
