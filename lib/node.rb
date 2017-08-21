@@ -61,4 +61,8 @@ class Node
       @right.depth_of(score)
     end
   end
+
+  def make_hash(node)
+    {movie=>score}
+  end
 end

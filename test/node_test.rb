@@ -7,8 +7,7 @@ class TestNode < Minitest::Test
 
   #passes
   def test_node_class_exists
-    skip
-    node = Node.new(12, "string")
+    node = Node.new(12, "string", 0)
     assert_instance_of Node, node
   end
 

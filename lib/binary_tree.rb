@@ -1,7 +1,3 @@
-#   def depth_of(score)
-#     #return depth or nil if doesn't exist
-#   end
-#
 #   def max
 #     #return highest movie and score: {movie, score}
 #   end
@@ -18,7 +14,9 @@
 #     #number of movies added (ignore/don't add score repeats)
 #   end
 #
-# end
+#   def health
+#     we'll get there
+#   end
 
 require 'pry'
 require_relative './node.rb'
@@ -62,5 +60,10 @@ class BinarySearchTree
     else
       @root.depth_of(score)
     end
+  end
+
+  def sort
+    @sorted_scores = []
+    #[{movie, score}, {movie, score}, {movie, score}, etc]
   end
 end
