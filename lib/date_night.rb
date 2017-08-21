@@ -3,15 +3,15 @@
 #   end
 #
 #   def max
-#     #return highest movie and score: {movie_title, score}
+#     #return highest movie and score: {movie, score}
 #   end
 #
 #   def min
-#     #return lowest movie and score: {movie_title, score}
+#     #return lowest movie and score: {movie, score}
 #   end
 #
 #   def sort
-#     #[{movie_title, score}, {movie_title, score}, {movie_title, score}, etc]
+#     #[{movie, score}, {movie, score}, {movie, score}, etc]
 #   end
 #
 #   def load(movies_txt)
@@ -24,6 +24,8 @@ require 'pry'
 
 class BinarySearchTree
 
+  #look up smart vs. dumb nodes
+
   # def load(file)
   #   @root = Node.new(first_line_score_and_movie)
   #   #iterate through list adding new nodes to root
@@ -31,15 +33,17 @@ class BinarySearchTree
   # end
 
   def insert(score, movie)
+    binding.pry
     if @root.nil?
-      @root = Node.new(score, movie)
-      return 0
+      @root = Node.new(score, movie, 0)
+      return @root.depth_counter
     else
       @root.insert(score, movie)
     end
   end
 
   def include?(score)
+    binding.pry
     if @root.score == score
       return true
     elsif @root.nil? || (@root.right.nil? && @root.left.nil?)
@@ -52,6 +56,7 @@ class BinarySearchTree
   end
 
   def depth_of(score)
+    binding.pry
     if @root.nil? || (@root.right.nil? && @root.left.nil?)
       return nil
     elsif @root.score == score
@@ -63,12 +68,14 @@ class BinarySearchTree
 
 end
 
+#make new file
+#make new test file foe node class
 class Node
-  attr_reader :score, :movie_title
+  attr_reader :score, :movie
   attr_accessor :left, :right, :depth_counter
 
-  #depth_counter at -2 for now because adding left and right nodes to the root add two
-  def initialize(score, movie, depth_counter = (-2))
+  def initialize(score, movie, depth_counter)
+    binding.pry
     @score = score
     @movie = movie
     @left = nil
@@ -76,35 +83,37 @@ class Node
     @depth_counter = depth_counter
   end
 
-  def insert(score, movie_title)
+  def insert(score, movie)
+    binding.pry
     if @score < score
-      insert_right(score, movie_title)
+      insert_right(score, movie)
     elsif @score > score
-      insert_left(score, movie_title)
+      insert_left(score, movie)
     end
   end
 
-  def insert_left(score, movie_title)
+  def insert_left(score, movie)
+    binding.pry
     if left.nil?
-      @left = Node.new(score, movie_title, @depth_counter += 1)
-      @left.depth_counter += 1
+      @left = Node.new(score, movie, depth_counter + 1)
       return @left.depth_counter
     else
-      @left.insert(score, movie_title)
+      @left.insert(score, movie)
     end
   end
 
-  def insert_right(score, movie_title)
+  def insert_right(score, movie)
+    binding.pry
     if @right.nil?
-      @right = Node.new(score, movie_title, @depth_counter += 1)
-      @right.depth_counter += 1
+      @right = Node.new(score, movie, depth_counter + 1)
       return @right.depth_counter
     else
-      @right.insert(score, movie_title)
+      @right.insert(score, movie)
     end
   end
 
   def include?(score)
+    binding.pry
     if @score == score
       return true
     elsif @right.nil? && @left.nil?
@@ -117,6 +126,7 @@ class Node
   end
 
   def depth_of(score)
+    binding.pry
     if @score == score
       return @depth_counter
     elsif @right.nil? && @left.nil?

@@ -5,10 +5,16 @@ require_relative '../lib/date_night'
 
 class TestDateNight < Minitest::Test
 
+#change BinarySearchTree in tests
+  attr_reader :tree
+
+  def setup
+    @tree = BinarySearchTree.new
+  end
+
   #passes
   def test_binary_search_tree_class_exists
     skip
-    tree = BinarySearchTree.new
     assert_instance_of BinarySearchTree, tree
   end
 
@@ -19,16 +25,17 @@ class TestDateNight < Minitest::Test
     assert_instance_of Node, node
   end
 
+#don't say it; please clarify (test_methodname_whatdoesitdo?)
   def test_it_inserts_new_movie
     tree = BinarySearchTree.new
+    #name variables better
     a = tree.insert(61, "Bill & Ted's Excellent Adventure")
     b = tree.insert(16, "Johnny English")
     c = tree.insert(92, "Sharknado 3")
     d = tree.insert(50, "Hannibal Buress: Animal Furnace")
 
     assert_equal 0, a
-    #this doesn't work because depth_counter is not perfectly functional
-    #assert_equal 1, b
+    assert_equal 1, b
     assert_equal 1, c
     assert_equal 2, d
   end
@@ -46,8 +53,8 @@ class TestDateNight < Minitest::Test
     refute tree.include?(72)
   end
 
-  #kinda-sorta works, but only if root has two nodes coming off
   def test_it_checks_score_depth
+    skip
     tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
