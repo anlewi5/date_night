@@ -25,6 +25,11 @@
 # end
 
 class BinarySearchTree
+
+  def initialize
+    @root = nil
+  end
+
   def load(file)
     @root = Node.new(first_line_score_and_movie)
     #iterate through list adding new nodes to root
@@ -37,6 +42,19 @@ class BinarySearchTree
       @root.insert(score, movie)
     end
   end
+
+  def include?(score)
+    if @root.score == score
+      return true
+    elsif @root.nil? || (@root.right.nil? && @root.left.nil?)
+      return false
+    elsif @root.right.nil? || @root.score > score
+      @root.left.include?(score)
+    elsif @root.left.nil? || @root.score < score
+      @root.right.include?(score)
+    end
+  end
+
 end
 
 class Node
@@ -72,6 +90,18 @@ class Node
       @right = Node.new(score, movie_title)
     else
       @right.insert(score, movie_title)
+    end
+  end
+
+  def include?(score)
+    if @score == score
+      return true
+    elsif @right.nil? && @left.nil?
+      return false
+    elsif @right.right.nil? || @right.score > score
+      @left.include?(score)
+    elsif @left.left.nil? || @left.score < score
+      @right.include?(score)
     end
   end
 end

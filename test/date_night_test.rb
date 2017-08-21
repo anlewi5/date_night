@@ -1,7 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative 'date_night'
+require_relative '../lib/date_night'
 
 class DateNightTest < Minitest::Test
   def binary_search_tree_class_exists
@@ -15,6 +15,7 @@ class DateNightTest < Minitest::Test
   end
 
   def it_inserts_new_movie
+    skip
     tree = BinarySearchTree.new
     a = tree.insert(61, "Bill & Ted's Excellent Adventure")
     b = tree.insert(16, "Johnny English")
@@ -28,6 +29,7 @@ class DateNightTest < Minitest::Test
   end
 
   def it_checks_if_score_exits
+    skip
     tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
@@ -39,6 +41,7 @@ class DateNightTest < Minitest::Test
   end
 
   def it_checks_score_depth
+    skip
     tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
@@ -51,6 +54,7 @@ class DateNightTest < Minitest::Test
   end
 
   def it_finds_max_score
+    skip
     tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
@@ -61,6 +65,7 @@ class DateNightTest < Minitest::Test
   end
 
   def it_finds_min_score
+    skip
     tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
@@ -71,6 +76,7 @@ class DateNightTest < Minitest::Test
   end
 
   def it_sorts_scores_ascending
+    skip
     tree = BinarySearchTree.new
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
@@ -90,6 +96,7 @@ class DateNightTest < Minitest::Test
   end
 
   def it_reports_health
+    skip
     tree = BinarySearchTree.new
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
