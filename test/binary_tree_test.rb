@@ -5,36 +5,29 @@ require_relative '../lib/binary_tree'
 
 class TestDateNight < Minitest::Test
 
-#change BinarySearchTree in tests
   attr_reader :tree
 
   def setup
     @tree = BinarySearchTree.new
   end
 
-  #passes
   def test_binary_search_tree_class_exists
-    skip
     assert_instance_of BinarySearchTree, tree
   end
 
-#don't say it; please clarify (test_methodname_whatdoesitdo?)
   def test_insert_adds_new_movie
-    #name variables better
-    a = tree.insert(61, "Bill & Ted's Excellent Adventure")
-    b = tree.insert(16, "Johnny English")
-    c = tree.insert(92, "Sharknado 3")
-    d = tree.insert(50, "Hannibal Buress: Animal Furnace")
+    tree_one = tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree_two = tree.insert(16, "Johnny English")
+    tree_three = tree.insert(92, "Sharknado 3")
+    tree_four = tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    assert_equal 0, a
-    assert_equal 1, b
-    assert_equal 1, c
-    assert_equal 2, d
+    assert_equal 0, tree_one
+    assert_equal 1, tree_two
+    assert_equal 1, tree_three
+    assert_equal 2, tree_four
   end
 
-  #passes
   def test_include_checks_if_score_exits
-    skip
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -45,7 +38,6 @@ class TestDateNight < Minitest::Test
   end
 
   def test_depth_of_checks_score_depth
-    skip
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -83,9 +75,9 @@ class TestDateNight < Minitest::Test
     tree.insert(92, "Sharknado 3")
     tree.insert(50, "Hannibal Buress: Animal Furnace")
 
-    sorted = [{"Johnny English"=>16}, {"Hannibal Buress: Animal Furnace"=>50}, {"Bill & Ted's Excellent Adventure"=>61}, {"Sharknado 3"=>92}]
+    sorted_scores = [{"Johnny English"=>16}, {"Hannibal Buress: Animal Furnace"=>50}, {"Bill & Ted's Excellent Adventure"=>61}, {"Sharknado 3"=>92}]
 
-    assert_equal sorted, tree.sort
+    assert_equal sorted_scores, tree.sort
   end
 
   def test_load_loads_file_into_tree
