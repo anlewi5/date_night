@@ -2,10 +2,6 @@
 #     #return depth or nil if doesn't exist
 #   end
 #
-#   def include?(score)
-#     #return boolean, true if score is there
-#   end
-#
 #   def max
 #     #return highest movie and score: {movie_title, score}
 #   end
@@ -26,13 +22,10 @@
 
 class BinarySearchTree
 
-  def initialize
-    @root = nil
-  end
-
   def load(file)
     @root = Node.new(first_line_score_and_movie)
     #iterate through list adding new nodes to root
+    #return number of movies added (ignore/don't add score repeats)
   end
 
   def insert(score, movie)
@@ -55,17 +48,28 @@ class BinarySearchTree
     end
   end
 
+  def depth_of(score)
+    if @root.score == score
+      return 0
+    elsif @nil_pointer
+      return nil
+    elsif
+      @root.depth_of(score)
+    end
+  end
+
 end
 
 class Node
   attr_reader :score, :movie_title
-  attr_accessor :left, :right
+  attr_accessor :left, :right, :depth_counter
 
   def initialize(score, movie)
     @score = score
     @movie = movie
     @left = nil
     @right = nil
+    @depth_counter = 1
   end
 
   def insert(score, movie_title)
@@ -102,6 +106,20 @@ class Node
       @left.include?(score)
     elsif @left.left.nil? || @left.score < score
       @right.include?(score)
+    end
+  end
+
+  def depth_of(score)
+    if @score == score
+      return @depth_counter
+    elsif @right.nil? && @left.nil?
+      return nil
+    elsif @right.right.nil? || @right.score > score
+      @left.depth_counter += 1
+      @left.depth_of(score)
+    elsif @left.left.nil? || @left.score < score
+      @right.depth_counter += 1
+      @right.depth_of(score)
     end
   end
 end
