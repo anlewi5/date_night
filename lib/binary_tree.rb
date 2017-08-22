@@ -69,7 +69,7 @@ class BinarySearchTree
 
   def min
     if @root.nil?
-      nil
+      return nil
     elsif @root.left.nil?
       @root.make_hash
     else
@@ -78,7 +78,13 @@ class BinarySearchTree
   end
 
   def max
-
+    if @root.nil?
+      return nil
+    elsif @root.right.nil?
+      @root.make_hash
+    else
+      @root.max
+    end
   end
 
 end

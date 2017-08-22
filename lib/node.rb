@@ -1,5 +1,7 @@
 #make new file
 #make new test file foe node class
+require 'pry'
+
 class Node
   attr_reader :score, :movie
   attr_accessor :left, :right, :depth_counter
@@ -7,8 +9,6 @@ class Node
   def initialize(score, movie, depth_counter)
     @score = score
     @movie = movie
-    @left = nil
-    @right = nil
     @depth_counter = depth_counter
   end
 
@@ -67,15 +67,15 @@ class Node
   end
 
   def min
-    if @left.nil
+    if @left.nil?
       make_hash
     else
       @left.min
     end
   end
 
-  def min
-    if @right.nil
+  def max
+    if @right.nil?
       make_hash
     else
       @right.min

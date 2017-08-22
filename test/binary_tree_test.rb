@@ -45,11 +45,10 @@ class TestDateNight < Minitest::Test
 
     assert_equal 1, tree.depth_of(92)
     assert_equal 2, tree.depth_of(50)
-    assert_equal nil, tree.depth_of(72)
+    assert_nil tree.depth_of(72)
   end
 
   def test_max_finds_max_score
-    skip
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
@@ -59,7 +58,6 @@ class TestDateNight < Minitest::Test
   end
 
   def test_min_finds_min_score
-    skip
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")
