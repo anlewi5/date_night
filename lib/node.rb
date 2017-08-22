@@ -62,7 +62,23 @@ class Node
     end
   end
 
-  def make_hash(node)
-    {movie=>score}
+  def make_hash
+    {@movie=>@score}
+  end
+
+  def min
+    if @left.nil
+      make_hash
+    else
+      @left.min
+    end
+  end
+
+  def min
+    if @right.nil
+      make_hash
+    else
+      @right.min
+    end
   end
 end

@@ -66,4 +66,19 @@ class BinarySearchTree
     @sorted_scores = []
     #[{movie, score}, {movie, score}, {movie, score}, etc]
   end
+
+  def min
+    if @root.nil?
+      nil
+    elsif @root.left.nil?
+      @root.make_hash
+    else
+      @root.min
+    end
+  end
+
+  def max
+
+  end
+
 end
