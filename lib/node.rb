@@ -23,7 +23,7 @@ class Node
   def insert_left(score, movie)
     if left.nil?
       @left = Node.new(score, movie, depth_counter + 1)
-      return @left.depth_counter
+      @left.depth_counter
     else
       @left.insert(score, movie)
     end
@@ -32,18 +32,17 @@ class Node
   def insert_right(score, movie)
     if @right.nil?
       @right = Node.new(score, movie, depth_counter + 1)
-      return @right.depth_counter
+      @right.depth_counter
     else
       @right.insert(score, movie)
     end
   end
 
   def include?(score)
-    binding.pry
     if @score == score
-      return true
+      true
     elsif @right.nil? && @left.nil?
-      return false
+      false
     elsif @right.nil? || @score > score
       @left.include?(score)
     elsif @left.nil? || @score < score
@@ -53,9 +52,9 @@ class Node
 
   def depth_of(score)
     if @score == score
-      return @depth_counter
+      @depth_counter
     elsif @right.nil? && @left.nil?
-      return nil
+      nil
     elsif @right.nil? || @score >= score
       @left.depth_of(score)
     elsif @left.nil? || @score <= score

@@ -42,9 +42,9 @@ class BinarySearchTree
 
   def include?(score)
     if @root.score == score
-      return true
+      true
     elsif @root.nil? || (@root.right.nil? && @root.left.nil?)
-      return false
+      false
     else
       @root.include?(score)
     end
@@ -52,9 +52,9 @@ class BinarySearchTree
 
   def depth_of(score)
     if @root.nil? || (@root.right.nil? && @root.left.nil?)
-      return nil
+      nil
     elsif @root.score == score
-      return 0
+      0
     else
       @root.depth_of(score)
     end
@@ -67,9 +67,7 @@ class BinarySearchTree
 
   def min
     if @root.nil?
-      return nil
-    elsif @root.left.nil?
-      @root.make_hash
+      nil
     else
       @root.min
     end
@@ -77,9 +75,7 @@ class BinarySearchTree
 
   def max
     if @root.nil?
-      return nil
-    elsif @root.right.nil?
-      @root.make_hash
+      nil
     else
       @root.max
     end
@@ -87,7 +83,7 @@ class BinarySearchTree
 
   def sort
     if @root.nil?
-      return nil
+      nil
     else
       @root.sort_left + [@root.make_hash] + @root.sort_right
     end
