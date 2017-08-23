@@ -87,4 +87,12 @@ class BinarySearchTree
     end
   end
 
+  def sort
+    if @root.nil?
+      return nil
+    else
+      @root.sort_left + [@root.make_hash] + @root.sort_right
+    end
+    # => [{movie, score}, {movie, score}, {movie, score}, etc]
+  end
 end

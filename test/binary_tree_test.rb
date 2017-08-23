@@ -67,7 +67,6 @@ class TestDateNight < Minitest::Test
   end
 
   def test_sort_sorts_scores_ascending
-    skip
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
     tree.insert(92, "Sharknado 3")

@@ -81,4 +81,19 @@ class Node
       @right.min
     end
   end
+
+  def sort_left
+    binding.pry
+    if @left.nil? && @right.nil?
+      [make_hash]
+    elsif @left.nil?
+      [make_hash] + @right.sort_left
+    else
+      @left.sort_left
+    end
+  end
+
+  def sort_right
+      @right.sort_left
+  end
 end
