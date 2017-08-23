@@ -78,7 +78,7 @@ class TestDateNight < Minitest::Test
   end
 
   def test_load_loads_file_into_tree
-    assert_equal 99, tree.load("/Users/annalewis/turing/1module/projects/date_night/movies/movies.txt")
+    assert_equal 99, tree.load("movies.txt")
   end
 
   def test_health_reports_tree_health

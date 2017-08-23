@@ -14,7 +14,8 @@ class BinarySearchTree
   #look up smart vs. dumb nodes
 
   def load(text_file)
-    file = File.open(text_file)
+    absolute_path = File.absolute_path(text_file)
+    file = File.open(absolute_path)
     movie_count = 0
     file.each do |line|
       movie_count += 1
