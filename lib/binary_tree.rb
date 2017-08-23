@@ -1,15 +1,3 @@
-#   def max
-#     #return highest movie and score: {movie, score}
-#   end
-#
-#   def min
-#     #return lowest movie and score: {movie, score}
-#   end
-#
-#   def sort
-#     #[{movie, score}, {movie, score}, {movie, score}, etc]
-#   end
-#
 #   def load(movies_txt)
 #     #number of movies added (ignore/don't add score repeats)
 #   end
@@ -25,11 +13,15 @@ class BinarySearchTree
 
   #look up smart vs. dumb nodes
 
-  # def load(file)
+#loads and puts file for now
+  def load(text_file)
+    file = File.open(text_file)
+    file_lines = file.read.split("\n")
+    puts file_lines
   #   @root = Node.new(first_line_score_and_movie)
   #   #iterate through list adding new nodes to root
   #   #return number of movies added (ignore/don't add score repeats)
-  # end
+  end
 
   def insert(score, movie)
     if @root.nil?
@@ -58,11 +50,6 @@ class BinarySearchTree
     else
       @root.depth_of(score)
     end
-  end
-
-  def sort
-    @sorted_scores = []
-    #[{movie, score}, {movie, score}, {movie, score}, etc]
   end
 
   def min
