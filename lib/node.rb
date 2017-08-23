@@ -39,13 +39,14 @@ class Node
   end
 
   def include?(score)
+    binding.pry
     if @score == score
       return true
     elsif @right.nil? && @left.nil?
       return false
-    elsif @right.right.nil? || @right.score > score
+    elsif @right.nil? || @score > score
       @left.include?(score)
-    elsif @left.left.nil? || @left.score < score
+    elsif @left.nil? || @score < score
       @right.include?(score)
     end
   end
@@ -83,7 +84,6 @@ class Node
   end
 
   def sort_left
-    binding.pry
     if @left.nil? && @right.nil?
       [make_hash]
     elsif @left.nil?

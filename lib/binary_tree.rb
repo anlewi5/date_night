@@ -45,10 +45,8 @@ class BinarySearchTree
       return true
     elsif @root.nil? || (@root.right.nil? && @root.left.nil?)
       return false
-    elsif @root.right.nil? || @root.score > score
-      @root.left.include?(score)
-    elsif @root.left.nil? || @root.score < score
-      @root.right.include?(score)
+    else
+      @root.include?(score)
     end
   end
 
