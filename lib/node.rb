@@ -1,5 +1,3 @@
-#make new file
-#make new test file foe node class
 require 'pry'
 
 class Node

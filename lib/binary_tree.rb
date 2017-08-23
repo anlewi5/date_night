@@ -13,14 +13,15 @@ class BinarySearchTree
 
   #look up smart vs. dumb nodes
 
-#loads and puts file for now
   def load(text_file)
     file = File.open(text_file)
-    file_lines = file.read.split("\n")
-    puts file_lines
-  #   @root = Node.new(first_line_score_and_movie)
-  #   #iterate through list adding new nodes to root
-  #   #return number of movies added (ignore/don't add score repeats)
+    movie_count = 0
+    file.each do |line|
+      movie_count += 1
+      line_array = line.chomp.split(", ")
+      insert(line_array[0].to_i, line_array[1])
+    end
+    movie_count
   end
 
   def insert(score, movie)
