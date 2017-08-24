@@ -74,7 +74,7 @@ class Node
     if @right.nil?
       make_hash
     else
-      @right.min
+      @right.max
     end
   end
 
