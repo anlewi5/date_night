@@ -15,6 +15,10 @@ class TestDateNight < Minitest::Test
     assert_instance_of BinarySearchTree, tree
   end
 
+  def test_load_loads_file_into_tree
+    assert_equal 99, tree.load("movies.txt")
+  end
+
   def test_insert_adds_new_movie
     tree_one = tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree_two = tree.insert(16, "Johnny English")
@@ -48,15 +52,6 @@ class TestDateNight < Minitest::Test
     assert_nil tree.depth_of(72)
   end
 
-  def test_max_finds_max_score
-    tree.insert(61, "Bill & Ted's Excellent Adventure")
-    tree.insert(16, "Johnny English")
-    tree.insert(92, "Sharknado 3")
-    tree.insert(50, "Hannibal Buress: Animal Furnace")
-
-    assert_equal ({"Sharknado 3"=>92}), tree.max
-  end
-
   def test_min_finds_min_score
     tree.insert(61, "Bill & Ted's Excellent Adventure")
     tree.insert(16, "Johnny English")
@@ -64,6 +59,15 @@ class TestDateNight < Minitest::Test
     tree.insert(50, "Hannibal Buress: Animal Furnace")
 
     assert_equal ({"Johnny English"=>16}), tree.min
+  end
+
+  def test_max_finds_max_score
+    tree.insert(61, "Bill & Ted's Excellent Adventure")
+    tree.insert(16, "Johnny English")
+    tree.insert(92, "Sharknado 3")
+    tree.insert(50, "Hannibal Buress: Animal Furnace")
+
+    assert_equal ({"Sharknado 3"=>92}), tree.max
   end
 
   def test_sort_sorts_scores_ascending
@@ -77,10 +81,6 @@ class TestDateNight < Minitest::Test
     assert_equal sorted_scores, tree.sort
   end
 
-  def test_load_loads_file_into_tree
-    assert_equal 99, tree.load("movies.txt")
-  end
-
   def test_total_nodes_returns_count_of_nodes_in_tree
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
@@ -92,6 +92,20 @@ class TestDateNight < Minitest::Test
 
     assert_equal 7, tree.total_nodes
 
+  end
+
+  def test_percent_tree_makes_index_two_of_health_array_elements_into_percent
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+
+    assert_equal [[98, 7, 100]], tree.percent_tree([98, 7, 7])
+    assert_equal [[58, 6, 85]], tree.percent_tree([[58, 6, 6]])
+    assert_equal [[36, 2, 28], [93, 3, 42]], tree.percent_tree([[36, 2, 2], [93, 3, 3]])
   end
 
   def test_health_reports_tree_health

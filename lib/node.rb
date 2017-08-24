@@ -17,7 +17,7 @@ class Node
   end
 
   def insert_left(score, movie)
-    if left.nil?
+    if @left.nil?
       @left = Node.new(score, movie, depth_counter + 1)
       @left.depth_counter
     else

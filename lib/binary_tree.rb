@@ -17,7 +17,7 @@ class BinarySearchTree
   def insert(score, movie)
     if @root.nil?
       @root = Node.new(score, movie, 0)
-      return @root.depth_counter
+      @root.depth_counter
     else
       @root.insert(score, movie)
     end
