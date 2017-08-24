@@ -16,7 +16,7 @@ class TestDateNight < Minitest::Test
   end
 
   def test_load_loads_file_into_tree
-    assert_equal 99, tree.load("movies.txt")
+    assert_equal 99, tree.load("test/fixtures/movies.txt")
   end
 
   def test_insert_adds_new_movie
