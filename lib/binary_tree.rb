@@ -1,11 +1,3 @@
-#   def load(movies_txt)
-#     #number of movies added (ignore/don't add score repeats)
-#   end
-#
-#   def health
-#     we'll get there
-#   end
-
 require 'pry'
 require_relative './node.rb'
 
@@ -76,6 +68,32 @@ class BinarySearchTree
     else
       @root.sort_left + [@root.make_hash] + @root.sort_right
     end
-    # => [{movie, score}, {movie, score}, {movie, score}, etc]
+  end
+
+  def total_nodes
+    if @root.nil?
+      0
+    else
+      return @root.total_nodes
+    end
+  end
+
+  def percent_tree(health_array)
+    if health_array.nil?
+      nil
+    else
+      health_array.map do |node|
+        node[2] = 100 * (node[2]/total_nodes)
+      end
+    end
+    health_array
+  end
+
+  def health(depth)
+    if @root.nil?
+      nil
+    else
+      @root.health(depth).percent_tree
+    end
   end
 end

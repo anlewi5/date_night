@@ -81,6 +81,19 @@ class TestDateNight < Minitest::Test
     assert_equal 99, tree.load("movies.txt")
   end
 
+  def test_total_nodes_returns_count_of_nodes_in_tree
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+
+    assert_equal 7, tree.total_nodes
+
+  end
+
   def test_health_reports_tree_health
     skip
     tree.insert(98, "Animals United")

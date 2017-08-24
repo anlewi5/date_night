@@ -93,4 +93,30 @@ class Node
   def sort_right
       @right.sort_left
   end
+
+  def total_nodes
+    if @left.nil? && @right.nil?
+      1
+    elsif @left.nil?
+      return (1 + @right.total_nodes)
+    elsif @right.nil?
+      return (1 + @left.total_nodes)
+    else
+      return (1 + @left.total_nodes + @right.total_nodes)
+    end
+  end
+
+  def health(depth)
+    if @depth_counter == depth
+      [@score, total_nodes, total_nodes]
+    elsif @left.nil? && @right.nil?
+      nil
+    elsif @left.nil?
+      @right.health(depth)
+    elsif @right.nil?
+      @left.health(depth)
+    else
+      @left.health(depth) + @right.health(depth)
+    end
+  end
 end
