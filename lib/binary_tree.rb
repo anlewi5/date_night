@@ -1,9 +1,6 @@
-require 'pry'
 require_relative './node.rb'
 
 class BinarySearchTree
-
-  #look up smart vs. dumb nodes
 
   def load(text_file)
     absolute_path = File.absolute_path(text_file)
@@ -79,11 +76,15 @@ class BinarySearchTree
   end
 
   def percent_tree(health_array)
+    health_array.compact!
+    if health_array.first.kind_of?(Array) == false
+      health_array = [health_array]
+    end
     if health_array.nil?
       nil
     else
       health_array.map do |node|
-        node[2] = 100 * (node[2]/total_nodes)
+        node[2] = (100 * (node[2] / total_nodes.to_f)).floor
       end
     end
     health_array
@@ -93,7 +94,7 @@ class BinarySearchTree
     if @root.nil?
       nil
     else
-      @root.health(depth).percent_tree
+      percent_tree(@root.health(depth))
     end
   end
 end

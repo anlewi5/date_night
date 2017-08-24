@@ -1,5 +1,3 @@
-require 'pry'
-
 class Node
   attr_reader :score, :movie
   attr_accessor :left, :right, :depth_counter
@@ -116,7 +114,7 @@ class Node
     elsif @right.nil?
       @left.health(depth)
     else
-      @left.health(depth) + @right.health(depth)
+      [@left.health(depth), @right.health(depth)]
     end
   end
 end

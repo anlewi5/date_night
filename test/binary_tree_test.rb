@@ -95,7 +95,6 @@ class TestDateNight < Minitest::Test
   end
 
   def test_health_reports_tree_health
-    skip
     tree.insert(98, "Animals United")
     tree.insert(58, "Armageddon")
     tree.insert(36, "Bill & Ted's Bogus Journey")
